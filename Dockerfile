@@ -2,6 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Update pip, setuptools, and wheel first
+RUN pip install --upgrade pip setuptools wheel
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     curl \
@@ -10,8 +13,8 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies with no-build-isolation
+RUN pip install --no-cache-dir --only-binary :all: -r requirements.txt || pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY . .
