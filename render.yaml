@@ -8,6 +8,9 @@ services:
     startCommand: streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
     healthCheckPath: /_stcore/health
     envVars:
+      - key: GROQ_API_KEY
+        scope: run
+        value: ${GROQ_API_KEY}
       - key: OPENAI_API_KEY
         scope: run
         value: ${OPENAI_API_KEY}
