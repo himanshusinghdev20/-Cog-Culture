@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: fact-check-agent
+    env: python
+    plan: free
+    pythonVersion: 3.11
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: OPENAI_API_KEY
+        scope: run
+        value: ${OPENAI_API_KEY}
+      - key: PORT
+        value: 8501

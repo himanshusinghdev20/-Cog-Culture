@@ -1,0 +1,25 @@
+name: Deploy to Streamlit Cloud
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Deploy to Streamlit Cloud
+      run: |
+        echo "Deployment to Streamlit Cloud is managed through the web interface."
+        echo "Push your code to GitHub, then:"
+        echo "1. Go to https://share.streamlit.io/"
+        echo "2. Click 'New app'"
+        echo "3. Select your repo and main branch"
+        echo "4. Set streamlit_app.py as the file"
+        echo "5. Click Deploy"
+        echo ""
+        echo "Your app will be live at:"
+        echo "https://share.streamlit.io/[username]/fact-check-agent"
