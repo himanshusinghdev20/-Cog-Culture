@@ -12,3 +12,5 @@ services:
         sync: false
       - key: OPENAI_API_KEY
         sync: false
+      - key: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
+        value: python
