@@ -4,13 +4,11 @@ services:
     env: python
     plan: free
     pythonVersion: 3.11
-    buildCommand: pip install --upgrade pip setuptools wheel && pip install -r requirements.txt
-    startCommand: streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
+    buildCommand: pip install --upgrade pip setuptools wheel && PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python pip install -r requirements.txt
+    startCommand: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0
     healthCheckPath: /_stcore/health
     envVars:
       - key: GROQ_API_KEY
         sync: false
       - key: OPENAI_API_KEY
         sync: false
-      - key: PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION
-        value: python
